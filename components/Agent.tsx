@@ -123,6 +123,10 @@ const Agent = ({
           username: userName,
           userid: userId,
         },
+        
+        // Two lines add
+        clientMessages: [],
+        serverMessages: []
       });
     } else {
       let formattedQuestions = "";
@@ -136,6 +140,8 @@ const Agent = ({
         variableValues: {
           questions: formattedQuestions,
         },
+        clientMessages: [],
+        serverMessages: []
       });
     }
   };

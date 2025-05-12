@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, db } from "@/firebase/admin";
+import { CollectionReference, DocumentData } from "firebase-admin/firestore";
 import { cookies } from "next/headers";
 
 // Session duration (1 week)
@@ -31,7 +32,6 @@ export async function signUp(params: SignUpParams) {
   try {
     // check if user exists in db
     const userRecord = await db.collection("users").doc(uid).get();
-
     if (userRecord.exists)
       return {
         success: false,
@@ -41,7 +41,9 @@ export async function signUp(params: SignUpParams) {
     // save user to db
     await db.collection("users").doc(uid).set({
       name,
-      email
+      email,
+      // profileURL,
+      // resumeURL,
     });
 
     return {
